@@ -8,7 +8,8 @@ var UIController = (function () {
         var DOMstrings = {
             inputType: '.add__type',
             inputDescription: '.add__description',
-            inputValue: '.add__value'
+            inputValue: '.add__value',
+            inputButton: '.add__btn'
         };
 
         return {
@@ -18,11 +19,17 @@ var UIController = (function () {
                     description: document.querySelector(DOMstrings.inputDescription).value,
                     value: document.querySelector(DOMstrings.inputValue).value
                 };
-            }  
+            },
+            
+            getDOMstrings: function() {
+                return DOMstrings;
+            }
         };
 })();
 
 var appContoller = (function(bugetCtrl, UICtrl){
+
+    var DOMstrings =UICtrl.getDOMstrings();
 
     var ctrlAddItem = function() {
         
@@ -30,7 +37,7 @@ var appContoller = (function(bugetCtrl, UICtrl){
         console.log(input);
     }
 
-    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem());
+    document.querySelector(DOMstrings.inputButton).addEventListener('click', ctrlAddItem);
 
     document.addEventListener ('keypress', function(event) {
 
