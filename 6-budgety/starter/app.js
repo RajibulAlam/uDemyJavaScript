@@ -29,22 +29,31 @@ var UIController = (function () {
 
 var appContoller = (function(bugetCtrl, UICtrl){
 
-    var DOMstrings =UICtrl.getDOMstrings();
+    var setupEventListeners = function () {
+        var DOMstrings =UICtrl.getDOMstrings();
+        document.querySelector(DOMstrings.inputButton).addEventListener('click', ctrlAddItem);
+        document.addEventListener ('keypress', function(event) {
+            if(event.keyCode === 13 || event.which === 13)
+            {
+                ctrlAddItem(); 
+            }
+        });
+    };
+
+    
 
     var ctrlAddItem = function() {
-        
         var input =UICtrl.getInput();
         console.log(input);
     }
 
-    document.querySelector(DOMstrings.inputButton).addEventListener('click', ctrlAddItem);
-
-    document.addEventListener ('keypress', function(event) {
-
-        if(event.keyCode === 13 || event.which === 13)
-        {
-            ctrlAddItem(); 
+    return  {
+        init: function() {
+            console.log('Application started');
+            setupEventListeners();
         }
-    });
-
+    }
+ 
 })(budgetController,UIController);
+
+appContoller.init();
