@@ -69,6 +69,23 @@ var UIController = (function () {
                 };
             },
             
+            addListItem: function(obj, type) {
+                // create HTML
+
+                '<div class="item clearfix" id="income-0">' +
+                    '<div class="item__description">Salary</div>' +
+                    '<div class="right clearfix">'+
+                        '<div class="item__value">+ 2,100.00</div>'+
+                        '<div class="item__delete">'+
+                            '<button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'
+
+
+
+            },
+
             getDOMstrings: function() {
                 return DOMstrings;
             }
@@ -91,9 +108,11 @@ var appContoller = (function(bugetCtrl, UICtrl){
     
 
     var ctrlAddItem = function() {
-        var input =UICtrl.getInput();
+        var input, newItem;
+        
+        input =UICtrl.getInput();
 
-        budgetController.addItem(input.type,input.description,input.value);
+        newItem = budgetController.addItem(input.type,input.description,input.value);
         console.log(input);
     }
 
